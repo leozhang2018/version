@@ -1,20 +1,21 @@
 .PHONY: list vet fmt default clean
 all: list vet fmt default clean 
 BINARY="version"
-VERSION=0.0.1
 BUILD=`date +%F`
 SHELL := /bin/bash
 BASEDIR = $(shell pwd)
 
 # build with verison infos
 versionDir="version/utils"
-gitTag=$(shell if [ "`git describe --tags --abbrev=0 2>/dev/null`" != "" ];then git describe --tags --abbrev=0; else git log --pretty=format:'%h' -n 1; fi)
-gitBranch=$(shell git rev-parse --abbrev-ref HEAD)
+gitTag=$(version_TAG)
+branch=$(version_BRANCH)
+gitPR=$(version_PR)
 buildDate=$(shell TZ=Asia/Shanghai date +%FT%T%z)
-gitCommit=$(shell git rev-parse --short HEAD)
+gitCommit=$(version_COMMIT_ID)
 gitTreeState=$(shell if git status|grep -q 'clean';then echo clean; else echo dirty; fi)
+buildURL=$(BUILD_URL)
 
-ldflags="-s -w -X ${versionDir}.gitTag=${gitTag} -X ${versionDir}.buildDate=${buildDate} -X ${versionDir}.gitCommit=${gitCommit} -X ${versionDir}.gitTreeState=${gitTreeState} -X ${versionDir}.version=${VERSION} -X ${versionDir}.gitBranch=${gitBranch}"
+ldflags="-s -w -X ${versionDir}.gitTag=${gitTag} -X ${versionDir}.buildDate=${buildDate} -X ${versionDir}.gitCommit=${gitCommit} -X ${versionDir}.gitTreeState=${gitTreeState} -X ${versionDir}.version=${VERSION} -X ${versionDir}.branch=${branch} -X ${versionDir}.buildURL=${buildURL}"
 
 
 PACKAGES=`go list ./... | grep -v /vendor/`

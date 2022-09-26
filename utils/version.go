@@ -12,6 +12,7 @@ var (
 	gitCommit    string
 	gitTreeState string
 	buildDate    string
+	buildURL      string
 )
 
 // Info contains versioning information.
@@ -22,6 +23,7 @@ type Info struct {
 	GitCommit    string `json:"gitCommit"`
 	GitTreeState string `json:"gitTreeState"`
 	BuildDate    string `json:"buildDate"`
+	BuildURL      string `json:"buildURL"`
 	GoVersion    string `json:"goVersion"`
 	Compiler     string `json:"compiler"`
 	Platform     string `json:"platform"`
@@ -40,6 +42,7 @@ func GetVersion() Info {
 		GitCommit:    gitCommit,
 		GitTreeState: gitTreeState,
 		BuildDate:    buildDate,
+		BuildURL:      buildURL,
 		GoVersion:    runtime.Version(),
 		Compiler:     runtime.Compiler,
 		Platform:     fmt.Sprintf("%s/%s", runtime.GOOS, runtime.GOARCH),
