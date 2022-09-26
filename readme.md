@@ -13,6 +13,7 @@ $ ./build/version.mac version
 Version: 
 GitBranch:
 CommitId:
+PR:
 Build Date: 
 Go Version: 
 OS/Arch: 

@@ -8,14 +8,14 @@ BASEDIR = $(shell pwd)
 # build with verison infos
 versionDir="version/utils"
 gitTag=$(version_TAG)
-branch=$(version_BRANCH)
+gitBranch=$(version_BRANCH)
 gitPR=$(version_PR)
 buildDate=$(shell TZ=Asia/Shanghai date +%FT%T%z)
 gitCommit=$(version_COMMIT_ID)
 gitTreeState=$(shell if git status|grep -q 'clean';then echo clean; else echo dirty; fi)
 buildURL=$(BUILD_URL)
 
-ldflags="-s -w -X ${versionDir}.gitTag=${gitTag} -X ${versionDir}.buildDate=${buildDate} -X ${versionDir}.gitCommit=${gitCommit} -X ${versionDir}.gitTreeState=${gitTreeState} -X ${versionDir}.version=${VERSION} -X ${versionDir}.branch=${branch} -X ${versionDir}.buildURL=${buildURL}"
+ldflags="-s -w -X ${versionDir}.gitTag=${gitTag} -X ${versionDir}.buildDate=${buildDate} -X ${versionDir}.gitCommit=${gitCommit} -X ${versionDir}.gitPR=${gitPR} -X ${versionDir}.gitTreeState=${gitTreeState} -X ${versionDir}.version=${VERSION} -X ${versionDir}.gitBranch=${gitBranch} -X ${versionDir}.buildURL=${buildURL}"
 
 
 PACKAGES=`go list ./... | grep -v /vendor/`

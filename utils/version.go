@@ -10,6 +10,7 @@ var (
 	gitBranch    string
 	gitTag       string
 	gitCommit    string
+	gitPR        string
 	gitTreeState string
 	buildDate    string
 	buildURL      string
@@ -21,9 +22,10 @@ type Info struct {
 	GitBranch    string `json:"gitBranch"`
 	GitTag       string `json:"gitTag"`
 	GitCommit    string `json:"gitCommit"`
+	GitPR        string `json:"gitPR"`
 	GitTreeState string `json:"gitTreeState"`
 	BuildDate    string `json:"buildDate"`
-	BuildURL      string `json:"buildURL"`
+	BuildURL     string `json:"buildURL"`
 	GoVersion    string `json:"goVersion"`
 	Compiler     string `json:"compiler"`
 	Platform     string `json:"platform"`
@@ -40,9 +42,10 @@ func GetVersion() Info {
 		GitBranch:    gitBranch,
 		GitTag:       gitTag,
 		GitCommit:    gitCommit,
+		GitPR:        gitPR,
 		GitTreeState: gitTreeState,
 		BuildDate:    buildDate,
-		BuildURL:      buildURL,
+		BuildURL:     buildURL,
 		GoVersion:    runtime.Version(),
 		Compiler:     runtime.Compiler,
 		Platform:     fmt.Sprintf("%s/%s", runtime.GOOS, runtime.GOARCH),
